@@ -33,8 +33,11 @@ Global total time: 00:01:09 (69.9 sec), executed benchmarks: 3
 // * Artifacts cleanup *
 BenchmarkDotNet.Reports.Summary
 END
+
+
 BEGIN
-Input 1 - Manual Benchmark
-Input 2 - Summary by Benchmark
-Input 3 - Manual Benchmark JsonSerializeDeserialize
-Your choice:
+
+- Input 1 - Manual Benchmark
+- Input 2 - Summary by Benchmark
+- Input 3 - Manual Benchmark JsonSerializeDeserialize
+- Your choice:
