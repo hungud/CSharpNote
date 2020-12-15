@@ -15,13 +15,17 @@ namespace LibAutoMapper
         GOTO_BEGIN:
             Console.WriteLine("BEGIN");
             string input = string.Empty;
-            while (input != "1" && 
+            while (
+                   input != "1" && 
                    input != "2" &&
-                   input != "3")
+                   input != "3" &&
+                   input != "4"
+                   )
             {
                 Console.WriteLine("Input 1 - Manual Benchmark");
                 Console.WriteLine("Input 2 - Summary by Benchmark");
                 Console.WriteLine("Input 3 - Manual Benchmark JsonSerializeDeserialize");
+                Console.WriteLine("Input 4 - Manual Benchmark MapObjectToDictionary");
                 Console.WriteLine("Your choice: ");
                 input = Console.ReadLine();
             }
@@ -57,6 +61,20 @@ namespace LibAutoMapper
                 }
 
                 BenchMarkJsonSerializeDeserializeManual benchmarkManual = new BenchMarkJsonSerializeDeserializeManual(numberObject: input2Value);
+                benchmarkManual.RunWaitAll();
+            }
+            else if (input == "4")
+            {
+                int input2Value = 0;
+
+                while (input2Value <= 0)
+                {
+                    Console.Write("Input Number Object:");
+                    var input2 = Console.ReadLine();
+                    int.TryParse(input2, out input2Value);
+                }
+
+                BenchMarkMapObjectToDictionary benchmarkManual = new BenchMarkMapObjectToDictionary(numberObject: input2Value);
                 benchmarkManual.RunWaitAll();
             }
             Console.WriteLine("END");
