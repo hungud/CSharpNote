@@ -36,6 +36,7 @@ namespace LibAutoMapper
             List<Task> tasks = new List<Task>();
             tasks.Add(RunAutomapper());
             tasks.Add(RunMapsterMapper());
+            tasks.Add(RunMapsterMapperStyleList());
             tasks.Add(RunSerializeDeserialize());
             Task.WaitAll(tasks.ToArray());
         }
@@ -100,6 +101,24 @@ namespace LibAutoMapper
             });
         }
 
+        public async Task<List<FooDto>> RunMapsterMapperStyleList()
+        {
+            TypeAdapterConfig.GlobalSettings.EnableJsonMapping();
+
+            return await Task.Run(() =>
+            {
+                using (var bench = new Benchmark($"MapsterMapper {NumberObject} object:"))
+                {
+
+                    var fooDtos = new List<FooDto>();
+
+                    fooDtos = new MapsterMapper.Mapper().Map<List<FooDto>>(DynFoos);
+
+                    return fooDtos;
+                }
+
+            });
+        }
 
         public async Task<List<FooDto>> RunSerializeDeserialize()
         {
